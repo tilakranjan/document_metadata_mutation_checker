@@ -1,0 +1,31 @@
+{
+  "name": "document-metadata-mutation-checker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "vitest run",
+    "analyze": "tsx src/cli/analyze.ts"
+  },
+  "dependencies": {
+    "@types/node": "^20.12.12",
+    "next": "^14.2.3",
+    "pdf-lib": "^1.17.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^15.0.7",
+    "@types/react": "^18.3.29",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.2.1",
+    "jsdom": "^24.1.0",
+    "tsx": "^4.10.5",
+    "vitest": "^1.6.0"
+  }
+}
