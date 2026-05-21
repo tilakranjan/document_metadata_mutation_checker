@@ -3,11 +3,17 @@ import { analyzePdf } from "@/lib/analyzer";
 
 export const runtime = "nodejs";
 
+interface UploadedFile {
+  name: string;
+  type?: string;
+  arrayBuffer: () => Promise<ArrayBuffer>;
+}
+
 export async function POST(request: Request) {
   const form = await request.formData();
   const file = form.get("file");
 
-  if (!(file instanceof File)) {
+  if (!isUploadedFile(file)) {
     return NextResponse.json({ error: "Upload a PDF file using the 'file' field." }, { status: 400 });
   }
 
@@ -25,4 +31,15 @@ export async function POST(request: Request) {
       { status: 422 }
     );
   }
+}
+
+function isUploadedFile(value: unknown): value is UploadedFile {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "name" in value &&
+    typeof value.name === "string" &&
+    "arrayBuffer" in value &&
+    typeof value.arrayBuffer === "function"
+  );
 }
